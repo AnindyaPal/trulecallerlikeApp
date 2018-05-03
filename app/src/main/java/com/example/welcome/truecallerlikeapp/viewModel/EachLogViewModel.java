@@ -26,7 +26,6 @@ public class EachLogViewModel extends AndroidViewModel {
 
     @Inject
     public CallLogsRepository callLogsRepository;
-
     ViewmodelComponent viewmodelComponent;
 
     public EachLogViewModel(@NonNull Application application) {

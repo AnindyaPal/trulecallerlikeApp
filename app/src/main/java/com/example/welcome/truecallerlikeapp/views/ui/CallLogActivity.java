@@ -1,5 +1,6 @@
 package com.example.welcome.truecallerlikeapp.views.ui;
 
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -25,7 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CallLogActivity extends AppCompatActivity {
+public class CallLogActivity extends AppCompatActivity implements LifecycleOwner {
 
     @BindView(R.id.rvCallLog)
     RecyclerView rvCallLog;
