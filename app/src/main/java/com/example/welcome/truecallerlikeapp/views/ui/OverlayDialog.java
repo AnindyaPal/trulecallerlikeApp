@@ -1,4 +1,4 @@
-package com.example.welcome.truecallerlikeapp.views;
+package com.example.welcome.truecallerlikeapp.views.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
