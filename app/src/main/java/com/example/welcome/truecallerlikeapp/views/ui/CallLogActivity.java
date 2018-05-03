@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.welcome.truecallerlikeapp.R;
 import com.example.welcome.truecallerlikeapp.repository.models.CallLogModel;
@@ -23,6 +25,9 @@ public class CallLogActivity extends AppCompatActivity {
 
     @BindView(R.id.rvCallLog)
     RecyclerView rvCallLog;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     RecyclerAdapterLogs recyclerAdapterLogs;
 
@@ -74,6 +79,7 @@ public class CallLogActivity extends AppCompatActivity {
     }
 
     public void addItems(List<CallLogModel> callLogModels){
+        progressBar.setVisibility(View.GONE);
         recyclerAdapterLogs.addLog(callLogModels);
     }
 

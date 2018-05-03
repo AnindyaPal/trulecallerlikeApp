@@ -70,12 +70,7 @@ public class DisplayOverlayReceiver extends PhoneCallReceiver {
 
         final View view = View.inflate(context.getApplicationContext(), R.layout.activity_overlay_dialog, null);
         ImageView noButton =  view.findViewById(R.id.ivCross);
-        noButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                manager.removeView(view);
-            }
-        });
+        noButton.setOnClickListener(v -> manager.removeView(view));
         if (manager != null) {
             manager.addView(view, layoutParams);
         }

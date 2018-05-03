@@ -46,4 +46,8 @@ dependencies {
     // alternatively, just LiveData
     implementation "android.arch.lifecycle:livedata:1.1.1"
     annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+
+    //for fast scroll
+    implementation 'com.simplecityapps:recyclerview-fastscroll:1.0.17'
+
 }

@@ -1,6 +1,5 @@
 package com.example.welcome.truecallerlikeapp.views.adapters;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +10,11 @@ import android.view.ViewGroup;
 import com.example.welcome.truecallerlikeapp.R;
 import com.example.welcome.truecallerlikeapp.repository.models.CallLogModel;
 import com.example.welcome.truecallerlikeapp.views.viewholders.CallLogViewHolder;
+import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
 import java.util.List;
 
-public class RecyclerAdapterLogs extends RecyclerView.Adapter<CallLogViewHolder> {
+public class RecyclerAdapterLogs extends RecyclerView.Adapter<CallLogViewHolder> implements FastScrollRecyclerView.SectionedAdapter {
 
     private List<CallLogModel> callLogs;
     private Context mContext;
@@ -49,5 +49,16 @@ public class RecyclerAdapterLogs extends RecyclerView.Adapter<CallLogViewHolder>
     public void addLog(List<CallLogModel> callLogModels){
         this.callLogs.addAll(callLogModels);
         notifyItemRangeInserted(0,callLogModels.size());
+    }
+
+    @NonNull
+    @Override
+    public String getSectionName(int position) {
+        return "";
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
     }
 }
