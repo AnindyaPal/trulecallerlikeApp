@@ -55,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:text="dfsfdsf"
         app:layout_constraintBottom_toBottomOf="@+id/tvCallType"
         app:layout_constraintStart_toEndOf="@+id/tvCallType"
         app:layout_constraintTop_toTopOf="@+id/tvCallType" />

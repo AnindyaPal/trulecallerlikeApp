@@ -12,6 +12,7 @@ import com.example.welcome.truecallerlikeapp.repository.models.CallLogModel;
 import com.example.welcome.truecallerlikeapp.views.viewholders.CallLogViewHolder;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
+import java.sql.Struct;
 import java.util.List;
 
 public class RecyclerAdapterLogs extends RecyclerView.Adapter<CallLogViewHolder> implements FastScrollRecyclerView.SectionedAdapter {
@@ -34,8 +35,8 @@ public class RecyclerAdapterLogs extends RecyclerView.Adapter<CallLogViewHolder>
     @Override
     public void onBindViewHolder(@NonNull CallLogViewHolder holder, int position) {
           CallLogModel callLogModel = callLogs.get(position);
-
-          holder.tvCallDuration.setText(callLogModel.getCallDuration());
+          String duration = callLogModel.getCallDuration()+" seconds";
+          holder.tvCallDuration.setText(duration);
           holder.tvPhNumber.setText(callLogModel.getPhNumber());
           holder.tvDir.setText(callLogModel.getDir());
           holder.tvCallTime.setText(callLogModel.getCallDayTime());
