@@ -12,7 +12,6 @@ import com.example.welcome.truecallerlikeapp.repository.models.CallLogModel;
 import com.example.welcome.truecallerlikeapp.views.viewholders.CallLogViewHolder;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
-import java.sql.Struct;
 import java.util.List;
 
 public class RecyclerAdapterLogs extends RecyclerView.Adapter<CallLogViewHolder> implements FastScrollRecyclerView.SectionedAdapter {

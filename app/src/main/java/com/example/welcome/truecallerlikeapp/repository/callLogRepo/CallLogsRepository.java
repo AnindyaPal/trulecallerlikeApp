@@ -1,9 +1,9 @@
 package com.example.welcome.truecallerlikeapp.repository.callLogRepo;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.provider.CallLog;
 
+import com.example.welcome.truecallerlikeapp.ApplicationClass;
 import com.example.welcome.truecallerlikeapp.repository.models.CallLogModel;
 
 import java.text.DateFormat;
@@ -12,17 +12,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class CallLogsRepository {
 
-    Context mContext;
+    ApplicationClass applicationClass;
 
-    public CallLogsRepository(Context mContext){
-        this.mContext = mContext;
+    public CallLogsRepository(ApplicationClass applicationClass){
+        this.applicationClass = applicationClass;
     }
+
     public List<CallLogModel> getAllCallLogs() {
 
         List<CallLogModel> callLogModels = new ArrayList<>();
-        Cursor managedCursor = mContext.getContentResolver().query(CallLog.Calls.CONTENT_URI, null,
+        Cursor managedCursor = applicationClass.getContentResolver().query(CallLog.Calls.CONTENT_URI, null,
                 null, null, null);
         int number = managedCursor.getColumnIndex(CallLog.Calls.NUMBER);
         int type = managedCursor.getColumnIndex(CallLog.Calls.TYPE);

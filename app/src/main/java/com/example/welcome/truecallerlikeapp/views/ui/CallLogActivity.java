@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -61,7 +60,7 @@ public class CallLogActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        eachLogViewModel.throwEachLog().removeObserver(callLogModelObserver);
+        eachLogViewModel.throwLogsMutable().removeObserver(callLogModelObserver);
     }
 
     @Override
@@ -74,7 +73,7 @@ public class CallLogActivity extends AppCompatActivity {
                     checkPermission();
                 }
                 else {
-                    onResume();
+                    recreate();
                 }
             }
         }
@@ -108,7 +107,7 @@ public class CallLogActivity extends AppCompatActivity {
     }
 
     private void observeLiveData() {
-        eachLogViewModel.throwEachLog().observe(this,callLogModelObserver);
+        eachLogViewModel.throwLogsMutable().observe(this,callLogModelObserver);
     }
 
     public void addItems(List<CallLogModel> callLogModels){
