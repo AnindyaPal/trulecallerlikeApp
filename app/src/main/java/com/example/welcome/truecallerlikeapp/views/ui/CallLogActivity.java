@@ -50,7 +50,6 @@ public class CallLogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_call_log);
         checkPermission();
         ButterKnife.bind(this);
-
         initMembers();
     }
 
@@ -71,15 +70,14 @@ public class CallLogActivity extends AppCompatActivity {
         if (requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (!Settings.canDrawOverlays(this)) {
-                    // You don't have permission
                     Toast.makeText(this,"Please allow permission,else you cant see the caller dialog",Toast.LENGTH_LONG).show();
                     checkPermission();
                 }
-
+                else {
+                    onResume();
+                }
             }
-
         }
-
     }
 
     public void checkPermission() {
