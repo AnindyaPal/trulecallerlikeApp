@@ -2,6 +2,10 @@ package com.example.welcome.truecallerlikeapp.views.ui;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.welcome.truecallerlikeapp.R;
 import com.example.welcome.truecallerlikeapp.repository.models.CallLogModel;
@@ -37,10 +42,13 @@ public class CallLogActivity extends AppCompatActivity {
 
     Observer<List<CallLogModel>> callLogModelObserver;
 
+    public static int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE= 5469;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call_log);
+        checkPermission();
         ButterKnife.bind(this);
 
         initMembers();
@@ -55,6 +63,33 @@ public class CallLogActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         eachLogViewModel.throwEachLog().removeObserver(callLogModelObserver);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!Settings.canDrawOverlays(this)) {
+                    // You don't have permission
+                    Toast.makeText(this,"Please allow permission,else you cant see the caller dialog",Toast.LENGTH_LONG).show();
+                    checkPermission();
+                }
+
+            }
+
+        }
+
+    }
+
+    public void checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
+            }
+        }
     }
 
     private void initMembers() {
